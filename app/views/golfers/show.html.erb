@@ -1,0 +1,37 @@
+<h1><%= @golfer.name %> Profile</h1>
+<h2>Rounds Completed</h2>
+
+<% if @golfer.rounds.any? %>
+    <h3>Average Score: <%= @golfer.average_score %></h3>
+    <h3>Handicap: <%= @golfer.handicap %></h3>
+<% end %>
+
+<% @golfer.rounds.each do |round| %>
+    <p><%= link_to round.course.name, course_path(round.course) %></p>
+    <% if round.tee_time %>
+        <p>Day: <%= round.tee_time.strftime("%m-%d-%Y") %></p>
+        <p>Tee Time: <%= round.tee_time.strftime("%H:%M") %></p>
+    <% end %>
+    <p><%= "Score: #{round.score ? round.score : "TBD"}" %></p>
+    <p><%= link_to "Edit Round", edit_golfer_round_path(@golfer, round) %></p>
+    <%= form_tag golfer_round_path(@golfer, round.id), method: "delete" do %>
+        <%= submit_tag "Delete Round" %>
+    <% end %>
+    <hr>
+<% end %>
+
+<% if @golfer.reviews.any? %>
+    <h3>My Reviews</h3>
+    <% @golfer.reviews.each do |rev| %>
+        <p>Course: <%= rev.course.name %></p>
+        <p>Rating: <%= rev.rating %></p>
+        <p>Comments: <%= rev.content %></p>
+        <%= link_to "Edit Review", edit_course_review_path(rev.course) %>
+        <hr>
+    <% end %>
+<% end %>
+
+
+<p><%= link_to "Book Tee Time", new_golfer_round_path(@golfer) %></p>
+<p><%= link_to "Courses Homepage", courses_path %></p>
+<%= link_to "Log Out", logout_path, method: :delete %>

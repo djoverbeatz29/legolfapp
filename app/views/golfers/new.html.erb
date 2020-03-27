@@ -1,0 +1,10 @@
+<h1>Create a Profile or Log In</h1>
+    <%= form_for @golfer do |f| %>
+    Name: <%= f.text_field :name %><br>
+    Email: <%= f.text_field :email %><br>
+    Password: <%= f.password_field :password %><br>
+    Confirm Password: <%= f.password_field :password_confirmation %><br><br>
+    <%= f.submit %>
+    <button class="ui button"><%= link_to "Log In", login_path %></button>
+<% end %>
+

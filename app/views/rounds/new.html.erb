@@ -1,0 +1,33 @@
+<h1>Enter Your Info Here:</h1>
+
+<% if @round.errors.any? %>
+    <% @round.errors.full_messages.each do |mess| %>
+        <p><%= mess %></p>
+    <% end %>
+<% end %>
+
+<%= form_for [@golfer, @round] do |f| %>
+    Course: <%= f.collection_select :course_id, Course.all, :id, :name %><br>
+
+    <div class="datepicker">Date: 
+    <select class="month form-control" name="round[tee_time][month]">
+    <%= options_for_select((1..12).to_a, @round.tee_time ? @round.tee_time.strftime('%m').to_i : nil) %>
+    </select>
+    <span class="slash">/</span>
+    <select class="day form-control" name="round[tee_time][day]">
+    <%= options_for_select((1..31).to_a, @round.tee_time ? @round.tee_time.strftime('%d').to_i : nil) %>
+    </select>
+    </div>
+
+    <div class="timepicker">Tee Time:
+    <select class="hour form-control" name="round[tee_time][hour]">
+    <%= options_for_select((7..16).to_a, @round.tee_time ? @round.tee_time.strftime('%H').to_i : nil) %>
+    </select>
+    <span class="colon">:</span>
+    <select class="minute form-control" name="round[tee_time][minute]" >
+        <%= options_for_select(['00', '15', '30', '45'], @round.tee_time ? @round.tee_time.strftime('%M').to_i : nil) %>
+    </select>
+    </div>
+
+    <%= f.submit %>
+<% end %>

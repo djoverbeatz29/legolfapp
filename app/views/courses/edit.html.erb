@@ -1,0 +1,9 @@
+<h1>Edit Course Info</h1>
+<%= form_for @course do |f| %>
+    <p>Name: <%= f.text_field :name %></p>
+    <p>Par: <%= f.number_field :par %></p>
+    <%= f.label :description, "Course Description:" %>
+    <p><%= f.text_area :description %></p>
+    <p>Link to Image: <%= f.text_field :pic %></p>
+    <%= f.submit %>
+<% end %>

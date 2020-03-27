@@ -1,0 +1,5 @@
+<h1><%= @review.golfer.name %>'s Review of <%= @review.course.name%></h1>
+<h2>Rating: <%= @review.rating %></p>
+<p>Comments: <%= @review.content %></p>
+
+<div><%= link_to "Back to Course", course_path(@review.course) %></div>

@@ -1,0 +1,7 @@
+<h1>Course: <%= @round.course.name %></h1>
+<% if @round.tee_time %>
+    <p>Day: <%= @round.tee_time.strftime("%m-%d-%Y") %></p>
+    <p>Tee Time: <%= @round.tee_time.strftime("%H:%M") %></p>
+<% end %>
+
+<%= link_to "Back to Golfer Page", golfer_path(@round.golfer) %>

@@ -1,0 +1,15 @@
+<h1>Create New Course</h1>
+
+<% if @course.errors.any? %>
+    <% @course.errors.full_messages.each do |mess| %>
+        <p><%= mess %></p>
+    <% end %>
+<% end %>
+
+<%= form_for @course do |f| %>
+    <p>Name: <%= f.text_field :name %></p>
+    <p>Par: <%= f.number_field :par %></p>
+    <%= f.label :description, "Course Description:" %>
+    <p><%= f.text_area :description %></p>
+    <%= f.submit %>
+<% end %>

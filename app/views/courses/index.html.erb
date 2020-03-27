@@ -1,0 +1,11 @@
+<h1>Welcome To The Courses Homepage!</h1>
+
+<% @courses.each do |cors| %>
+    <h2><%= link_to cors.name, course_path(cors) %></h2>
+    <hl>
+<% end %>
+
+<br>
+
+<h2><%= link_to "Add Course", new_course_path %></h2>
+<h2><%= link_to "Profile Page", golfer_path(@golfer) %>
