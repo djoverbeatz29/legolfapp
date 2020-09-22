@@ -1,3 +1,5 @@
+<h3><%= link_to "Back to Courses", courses_path %></h3>
+
 <h1><%= @course.name %> - Par <%= @course.par %></h1>
 <% if @course.pic %>
     <%= image_tag @course.pic %>
@@ -10,14 +12,13 @@
 <% if @course.reviews.any? %>
     <h2>Golfer Reviews</h2>
     <% @course.reviews.each do |rev| %>
-        <h3><%= rev.golfer.name %></h3>
+        <h3><%= link_to rev.golfer.name, golfer_path(rev.golfer) %></h3>
         <p><%= "#{rev.rating} - #{rev.title}" %></p>
         <p>Review: <%= rev.content %></p>
         <hr>
     <% end %>
 <% end %>
 
-<h3><%= link_to "Back to Courses", courses_path %></h3>
 <h3><%= link_to "Edit Course Info", edit_course_path(@course) %></h3>
 <h3><%= link_to "Leave a Review", new_course_review_path(@course) %></h3>
 
